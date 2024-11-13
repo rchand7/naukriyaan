@@ -5,18 +5,22 @@ import { Button } from '../ui/button'
 import CompaniesTable from './CompaniesTable'
 import { useNavigate } from 'react-router-dom'
 import useGetAllCompanies from '@/hooks/useGetAllCompanies'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setSearchCompanyByText } from '@/redux/companySlice'
 
 const Companies = () => {
-    useGetAllCompanies();
     const [input, setInput] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const companies = useSelector(state => state.companies); // Assuming companies are in Redux store
 
-    useEffect(()=>{
-        dispatch(setSearchCompanyByText(input));
-    },[input]);
+    // Fetch all companies when component mounts
+    useGetAllCompanies();
+
+    useEffect(() => {
+        dispatch(setSearchCompanyByText(input)); // Dispatch search text for filtering
+    }, [input, dispatch]);
+
     return (
         <div>
             <Navbar />
@@ -29,10 +33,16 @@ const Companies = () => {
                     />
                     <Button onClick={() => navigate("/admin/companies/create")}>New Company</Button>
                 </div>
-                <CompaniesTable/>
+
+                {/* CompaniesTable with fallback UI */}
+                {companies && companies.length > 0 ? (
+                    <CompaniesTable companies={companies} />
+                ) : (
+                    <div>No companies found</div> // Fallback if no companies available
+                )}
             </div>
         </div>
     )
 }
 
-export default Companies
+export default Companies;
