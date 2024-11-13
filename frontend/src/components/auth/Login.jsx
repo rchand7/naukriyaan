@@ -30,7 +30,7 @@ const Login = () => {
         e.preventDefault();
         try {
             dispatch(setLoading(true));
-            const res = await axios.post(`http://localhost:8000/api/v1/user/login`, input, {
+            const res = await axios.post(`https://naukriyaan-1.onrender.com/api/v1/user/login`, input, {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -66,7 +66,7 @@ const Login = () => {
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
-                            placeholder="patel@gmail.com"
+                            placeholder="arjun@gmail.com"
                         />
                     </div>
 
@@ -77,7 +77,7 @@ const Login = () => {
                             value={input.password}
                             name="password"
                             onChange={changeEventHandler}
-                            placeholder="patel@gmail.com"
+                            placeholder="arjun@gmail.com"
                         />
                     </div>
                     <div className='flex items-center justify-between'>

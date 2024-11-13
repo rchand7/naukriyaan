@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: 'http://localhost:5173', // Frontend dev URL
+  origin: 'https://naukriyaan-1.onrender.com', // Frontend dev URL
   credentials: true,
 };
 

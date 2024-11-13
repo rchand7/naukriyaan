@@ -16,7 +16,7 @@ const CompanyCreate = () => {
     const dispatch = useDispatch();
     const registerNewCompany = async () => {
         try {
-            const res = await axios.post(`http://localhost:8000/api/v1/company/register`, {companyName}, {
+            const res = await axios.post(`https://naukriyaan-1.onrender.com/api/v1/company/register`, {companyName}, {
                 headers:{
                     'Content-Type':'application/json'
                 },
